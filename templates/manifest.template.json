@@ -1,0 +1,29 @@
+{
+  "$schema": "https://pzp.riscent.com/schemas/manifest.schema.json",
+  "version": "1.0.0",
+  "protocolVersion": "1.0.0",
+  "name": "{{SITE_NAME}}",
+  "description": "{{ONE_LINE_DESCRIPTION}}",
+  "type": "{{TYPE}}",
+  "updated": "{{ISO_DATE}}",
+  "tokenBudgets": {
+    "essential": 500,
+    "full": 2000
+  },
+  "endpoints": {
+    "context": "/context/",
+    "actions": "/actions/",
+    "data": "/data/",
+    "meta": "/meta/"
+  },
+  "capabilities": ["read", "query"],
+  "authentication": {
+    "required": false,
+    "methods": ["none"]
+  },
+  "rateLimit": {
+    "requests": 100,
+    "window": "1m"
+  },
+  "tags": []
+}

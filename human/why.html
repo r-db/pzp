@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why PZP | Prime Zero Protocol</title>
+  <meta name="description" content="Why the web needs a machine-native layer. The case for Prime Zero Protocol.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-content">
+      <a href="index.html" class="logo">
+        <span class="logo-mark">PZP</span>
+        <span class="logo-text">Prime Zero Protocol</span>
+      </a>
+      <div class="nav-links">
+        <a href="why.html">Why</a>
+        <a href="how.html">How</a>
+        <a href="examples.html">Examples</a>
+        <a href="../spec/v1.md" class="nav-cta">Specification</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" style="min-height: auto; padding-top: 150px; padding-bottom: var(--space-xl);">
+      <div class="hero-content">
+        <p class="hero-eyebrow">WHY PZP</p>
+        <h1>The inevitable web.</h1>
+        <p class="hero-subtitle">
+          Machines will consume the web whether we design for them or not.<br>
+          The question is: badly or well?
+        </p>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="section-content" style="max-width: 800px;">
+
+        <h2>The Current State</h2>
+        <p class="lead" style="margin-bottom: var(--space-xl);">
+          Today, AI agents scrape human websites. They're remarkably good at it, but it's wasteful and fragile.
+        </p>
+
+        <div class="comparison-table">
+          <table>
+            <thead>
+              <tr>
+                <th>What Happens Today</th>
+                <th>What Should Happen</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Agent fetches HTML page</td>
+                <td>Agent fetches structured endpoint</td>
+              </tr>
+              <tr>
+                <td>Parses navigation, ads, footers</td>
+                <td>Receives only relevant content</td>
+              </tr>
+              <tr>
+                <td>Guesses at content structure</td>
+                <td>Reads explicit schema</td>
+              </tr>
+              <tr>
+                <td>Executes JavaScript (maybe)</td>
+                <td>No JavaScript needed</td>
+              </tr>
+              <tr>
+                <td>Extracts text with heuristics</td>
+                <td>Consumes native markdown</td>
+              </tr>
+              <tr>
+                <td>Wastes 80%+ tokens on cruft</td>
+                <td>100% tokens are useful</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 style="margin-top: var(--space-2xl);">The Numbers</h2>
+
+        <div class="stat-blocks">
+          <div class="stat-block">
+            <span class="stat-value">80%</span>
+            <span class="stat-label">Token waste on average</span>
+            <p>Cloudflare measured 80% token reduction converting their blog from HTML to markdown. Most tokens in HTML are structure, not content.</p>
+          </div>
+
+          <div class="stat-block">
+            <span class="stat-value">$0</span>
+            <span class="stat-label">JavaScript execution in most AI crawlers</span>
+            <p>ChatGPT, Claude, and Perplexity crawlers do not execute JavaScript. Your SPA is invisible to them.</p>
+          </div>
+
+          <div class="stat-block">
+            <span class="stat-value">∞</span>
+            <span class="stat-label">Sites with different structures</span>
+            <p>Every website is unique. Every scraping solution is custom. No standard means no ecosystem.</p>
+          </div>
+        </div>
+
+        <h2 style="margin-top: var(--space-2xl);">Who Benefits</h2>
+
+        <div class="benefits-grid">
+          <div class="benefit">
+            <h3>AI Agent Developers</h3>
+            <ul>
+              <li>Predictable parsing—no custom scrapers</li>
+              <li>Lower API costs—fewer tokens</li>
+              <li>Reliable structure—no guessing</li>
+              <li>Standard protocol—shared tooling</li>
+            </ul>
+          </div>
+
+          <div class="benefit">
+            <h3>Website Owners</h3>
+            <ul>
+              <li>Better AI integration</li>
+              <li>Control over machine presentation</li>
+              <li>Clean separation of concerns</li>
+              <li>Future-proof architecture</li>
+            </ul>
+          </div>
+
+          <div class="benefit">
+            <h3>End Users</h3>
+            <ul>
+              <li>Faster AI responses</li>
+              <li>More accurate information</li>
+              <li>Better AI-assisted experiences</li>
+              <li>Lower costs passed down</li>
+            </ul>
+          </div>
+
+          <div class="benefit">
+            <h3>The Ecosystem</h3>
+            <ul>
+              <li>Standard protocol = composable tools</li>
+              <li>Universal validators and crawlers</li>
+              <li>Quality metrics and benchmarks</li>
+              <li>Network effects as adoption grows</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2 style="margin-top: var(--space-2xl);">The Inevitability Argument</h2>
+
+        <blockquote class="big-quote">
+          "Machines will consume the web whether we design for them or not.
+          The question is: Do we want them parsing our human interfaces badly,
+          or consuming our machine interfaces well?"
+        </blockquote>
+
+        <p>Three futures exist:</p>
+
+        <ol class="futures-list">
+          <li>
+            <strong>No adaptation.</strong> AI agents continue scraping human sites. Wasteful, fragile, expensive. The status quo persists until it doesn't.
+          </li>
+          <li>
+            <strong>Fragmented solutions.</strong> Each company builds proprietary machine interfaces. No interoperability. Walled gardens. Racing to the bottom.
+          </li>
+          <li>
+            <strong>Open standard.</strong> A shared protocol emerges. Agents can consume any compliant site. Tooling flourishes. Everyone wins.
+          </li>
+        </ol>
+
+        <p>PZP is option three.</p>
+
+        <h2 style="margin-top: var(--space-2xl);">Why Now</h2>
+
+        <p>Several forces converge:</p>
+
+        <ul class="why-now-list">
+          <li><strong>Agent capability.</strong> AI agents are now capable enough to consume structured content meaningfully.</li>
+          <li><strong>API costs.</strong> Token costs matter. Companies spending millions on AI want efficiency.</li>
+          <li><strong>Existing standards.</strong> llms.txt, AGENTS.md, MCP—the ecosystem is ready for synthesis.</li>
+          <li><strong>Critical mass.</strong> Enough sites adopting similar patterns to standardize.</li>
+        </ul>
+
+        <p>The window is open. Standards crystallize now or fragment later.</p>
+
+        <div class="cta-center" style="margin-top: var(--space-2xl);">
+          <a href="how.html" class="btn btn-primary">Start Building</a>
+          <a href="../spec/v1.md" class="btn btn-secondary" style="margin-left: var(--space-md);">Read Specification</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <span class="logo-mark">PZP</span>
+        <p>Built for synthetic intelligence, by synthetic intelligence.</p>
+      </div>
+      <div class="footer-links">
+        <a href="why.html">Why PZP</a>
+        <a href="how.html">How to Implement</a>
+        <a href="examples.html">Examples</a>
+        <a href="../spec/v1.md">Specification</a>
+      </div>
+      <div class="footer-meta">
+        <p>© 2026 <a href="https://riscent.com">Riscent</a></p>
+        <p>CC0 1.0 Universal</p>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    .content-section {
+      padding: var(--space-xl) var(--space-lg);
+    }
+
+    .comparison-table {
+      margin: var(--space-xl) 0;
+      overflow-x: auto;
+    }
+
+    .comparison-table table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: var(--space-md);
+      text-align: left;
+      border: 1px solid var(--border);
+    }
+
+    .comparison-table th {
+      background: var(--bg-secondary);
+      font-weight: 600;
+    }
+
+    .comparison-table tr:nth-child(even) td {
+      background: var(--bg-secondary);
+    }
+
+    .stat-blocks {
+      display: grid;
+      gap: var(--space-lg);
+      margin: var(--space-xl) 0;
+    }
+
+    .stat-block {
+      padding: var(--space-lg);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .stat-value {
+      font-family: var(--font-mono);
+      font-size: 3rem;
+      font-weight: 700;
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      display: block;
+      margin-bottom: var(--space-sm);
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-lg);
+      margin: var(--space-xl) 0;
+    }
+
+    .benefit {
+      padding: var(--space-lg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .benefit h3 {
+      margin-bottom: var(--space-md);
+      color: var(--text-primary);
+    }
+
+    .benefit ul {
+      list-style: none;
+    }
+
+    .benefit li {
+      padding: var(--space-xs) 0;
+      color: var(--text-secondary);
+    }
+
+    .benefit li::before {
+      content: "→ ";
+      color: var(--text-muted);
+    }
+
+    .big-quote {
+      font-size: 1.5rem;
+      font-style: italic;
+      padding: var(--space-xl);
+      margin: var(--space-xl) 0;
+      border-left: 4px solid var(--text-primary);
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+    }
+
+    .futures-list {
+      margin: var(--space-lg) 0 var(--space-lg) var(--space-lg);
+    }
+
+    .futures-list li {
+      margin-bottom: var(--space-md);
+      color: var(--text-secondary);
+    }
+
+    .why-now-list {
+      margin: var(--space-lg) 0 var(--space-lg) var(--space-lg);
+    }
+
+    .why-now-list li {
+      margin-bottom: var(--space-md);
+      color: var(--text-secondary);
+    }
+  </style>
+</body>
+</html>

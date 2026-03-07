@@ -1,0 +1,186 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pzp.riscent.com/schemas/actions.schema.json",
+  "title": "PZP Site Actions",
+  "description": "Action catalog defining what operations can be performed",
+  "type": "object",
+  "required": ["actions"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "const": "https://pzp.riscent.com/schemas/actions.schema.json"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "description": {
+      "type": "string",
+      "description": "Overview of available actions"
+    },
+    "baseUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "Base URL for action endpoints"
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Action"
+      }
+    }
+  },
+  "$defs": {
+    "Action": {
+      "type": "object",
+      "required": ["name", "description", "endpoint", "method"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "description": "Unique action identifier (kebab-case)"
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "What this action does"
+        },
+        "endpoint": {
+          "type": "string",
+          "description": "API endpoint path"
+        },
+        "method": {
+          "type": "string",
+          "enum": ["GET", "POST", "PUT", "PATCH", "DELETE"],
+          "description": "HTTP method"
+        },
+        "input": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/Parameter"
+          },
+          "description": "Input parameters"
+        },
+        "output": {
+          "$ref": "#/$defs/OutputSchema",
+          "description": "Expected response structure"
+        },
+        "errors": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Error codes and descriptions"
+        },
+        "examples": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Example"
+          },
+          "description": "Request/response examples"
+        },
+        "authentication": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether authentication is required"
+        },
+        "rateLimit": {
+          "type": "object",
+          "properties": {
+            "requests": { "type": "integer" },
+            "window": { "type": "string" }
+          }
+        },
+        "deprecated": {
+          "type": "boolean",
+          "default": false
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "Parameter": {
+      "type": "object",
+      "required": ["type", "description"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["string", "integer", "number", "boolean", "array", "object"]
+        },
+        "description": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean",
+          "default": false
+        },
+        "default": {
+          "description": "Default value if not provided"
+        },
+        "enum": {
+          "type": "array",
+          "description": "Allowed values"
+        },
+        "minimum": {
+          "type": "number"
+        },
+        "maximum": {
+          "type": "number"
+        },
+        "minLength": {
+          "type": "integer"
+        },
+        "maxLength": {
+          "type": "integer"
+        },
+        "pattern": {
+          "type": "string",
+          "description": "Regex pattern for validation"
+        },
+        "items": {
+          "type": "object",
+          "description": "Schema for array items"
+        }
+      }
+    },
+    "OutputSchema": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["object", "array", "string", "number", "boolean", "null"]
+        },
+        "properties": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "items": {
+          "type": "object",
+          "description": "Schema for array items"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "Example": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Example name/description"
+        },
+        "input": {
+          "type": "object",
+          "description": "Example input"
+        },
+        "output": {
+          "description": "Example output"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

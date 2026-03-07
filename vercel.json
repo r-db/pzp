@@ -1,0 +1,44 @@
+{
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "X-PZP-Version", "value": "1.0.0" }
+      ]
+    },
+    {
+      "source": "/:path*.md",
+      "headers": [
+        { "key": "Content-Type", "value": "text/markdown; charset=utf-8" },
+        { "key": "X-PZP-Site", "value": "true" }
+      ]
+    },
+    {
+      "source": "/:path*.json",
+      "headers": [
+        { "key": "Content-Type", "value": "application/json; charset=utf-8" },
+        { "key": "X-PZP-Site", "value": "true" }
+      ]
+    },
+    {
+      "source": "/schemas/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400" }
+      ]
+    },
+    {
+      "source": "/human/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    }
+  ],
+  "rewrites": [
+    { "source": "/", "destination": "/human/index.html" }
+  ],
+  "cleanUrls": true
+}

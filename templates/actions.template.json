@@ -1,0 +1,46 @@
+{
+  "$schema": "https://pzp.riscent.com/schemas/actions.schema.json",
+  "version": "1.0.0",
+  "description": "Available actions for {{SITE_NAME}}",
+  "baseUrl": "{{BASE_URL}}",
+  "actions": [
+    {
+      "name": "example-action",
+      "description": "Description of what this action does",
+      "endpoint": "/api/example",
+      "method": "POST",
+      "input": {
+        "param1": {
+          "type": "string",
+          "required": true,
+          "description": "Description of parameter"
+        },
+        "param2": {
+          "type": "integer",
+          "default": 10,
+          "description": "Optional parameter with default"
+        }
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "result": "string",
+          "count": "integer"
+        }
+      },
+      "errors": {
+        "400": "Invalid request",
+        "404": "Not found",
+        "429": "Rate limit exceeded"
+      },
+      "examples": [
+        {
+          "name": "Basic example",
+          "input": { "param1": "test" },
+          "output": { "result": "success", "count": 1 }
+        }
+      ],
+      "tags": ["category"]
+    }
+  ]
+}

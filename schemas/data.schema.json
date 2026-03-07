@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pzp.riscent.com/schemas/data.schema.json",
+  "title": "PZP Site Data Schema Index",
+  "description": "Registry of data schemas available on the PZP site",
+  "type": "object",
+  "required": ["schemas"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "const": "https://pzp.riscent.com/schemas/data.schema.json"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "description": {
+      "type": "string",
+      "description": "Overview of data available"
+    },
+    "schemas": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/SchemaDefinition"
+      },
+      "description": "Named schema definitions"
+    },
+    "resources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Resource"
+      },
+      "description": "Available data resources"
+    }
+  },
+  "$defs": {
+    "SchemaDefinition": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["object", "array", "string", "number", "boolean"]
+        },
+        "description": {
+          "type": "string"
+        },
+        "properties": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "required": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "items": {
+          "type": "object",
+          "description": "Schema for array items"
+        },
+        "examples": {
+          "type": "array"
+        }
+      }
+    },
+    "Resource": {
+      "type": "object",
+      "required": ["name", "path", "schema"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Resource identifier"
+        },
+        "path": {
+          "type": "string",
+          "description": "File path relative to /data/"
+        },
+        "schema": {
+          "type": "string",
+          "description": "Schema name from schemas object"
+        },
+        "description": {
+          "type": "string"
+        },
+        "format": {
+          "type": "string",
+          "enum": ["json", "jsonl", "csv", "markdown"],
+          "default": "json"
+        },
+        "updated": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "tokenCount": {
+          "type": "integer",
+          "description": "Estimated token count"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

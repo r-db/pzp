@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Examples | Prime Zero Protocol</title>
+  <meta name="description" content="Real-world PZP implementation examples for different site types.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-content">
+      <a href="index.html" class="logo">
+        <span class="logo-mark">PZP</span>
+        <span class="logo-text">Prime Zero Protocol</span>
+      </a>
+      <div class="nav-links">
+        <a href="why.html">Why</a>
+        <a href="how.html">How</a>
+        <a href="examples.html">Examples</a>
+        <a href="../spec/v1.md" class="nav-cta">Specification</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" style="min-height: auto; padding-top: 150px; padding-bottom: var(--space-xl);">
+      <div class="hero-content">
+        <p class="hero-eyebrow">EXAMPLES</p>
+        <h1>See PZP in action.</h1>
+        <p class="hero-subtitle">
+          Real implementations for different use cases.
+        </p>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="section-content">
+
+        <div class="example-card featured">
+          <div class="example-badge">Live Example</div>
+          <h2>pzp.riscent.com</h2>
+          <p class="example-desc">
+            This very site. PZP specification served as a PZP site.
+            <strong>Meta: a protocol describing itself.</strong>
+          </p>
+          <div class="example-structure">
+            <h3>File Structure</h3>
+            <pre><code>pzp.riscent.com/
+├── index.md              # Entry point
+├── manifest.json         # Site metadata
+├── context/
+│   ├── essential.md      # Quick PZP overview
+│   └── full.md           # Complete documentation
+├── actions/
+│   └── index.json        # validate, get-schema
+├── spec/
+│   └── v1.md             # Full specification
+└── schemas/              # JSON Schema files</code></pre>
+          </div>
+          <div class="example-links">
+            <a href="../index.md" class="btn btn-secondary">View index.md</a>
+            <a href="../manifest.json" class="btn btn-secondary">View manifest.json</a>
+            <a href="../context/essential.md" class="btn btn-secondary">View essential.md</a>
+          </div>
+        </div>
+
+        <h2 style="margin-top: var(--space-2xl);">Example: Documentation Site</h2>
+        <div class="example-card">
+          <p class="example-desc">API documentation for a developer platform.</p>
+          <div class="example-structure">
+            <h3>File Structure</h3>
+            <pre><code>pzp.docs.example.com/
+├── index.md
+├── manifest.json
+├── context/
+│   ├── essential.md      # API overview, auth basics
+│   ├── full.md           # Complete API reference
+│   ├── authentication.md # Auth deep dive
+│   └── errors.md         # Error code reference
+├── actions/
+│   └── index.json        # API endpoints as actions
+└── data/
+    └── schema.json       # Request/response schemas</code></pre>
+          </div>
+          <div class="example-content">
+            <h3>manifest.json</h3>
+            <pre><code>{
+  "name": "Example API Documentation",
+  "description": "Complete API reference for Example Platform",
+  "type": "documentation",
+  "tokenBudgets": {
+    "essential": 400,
+    "full": 3000
+  },
+  "capabilities": ["read", "query"]
+}</code></pre>
+          </div>
+          <div class="example-content">
+            <h3>context/essential.md</h3>
+            <pre><code># Example API Essential Context
+
+## What This Is
+
+REST API for the Example Platform. JSON responses.
+OAuth2 authentication required for all endpoints.
+
+## Key Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | /users | List users |
+| GET | /users/{id} | Get user |
+| POST | /users | Create user |
+| DELETE | /users/{id} | Delete user |
+
+## Authentication
+
+Bearer token required. Get token from /oauth/token.
+
+## Rate Limits
+
+- 1000 requests/hour per token
+- 429 response when exceeded</code></pre>
+          </div>
+        </div>
+
+        <h2 style="margin-top: var(--space-2xl);">Example: E-Commerce Site</h2>
+        <div class="example-card">
+          <p class="example-desc">Product catalog and search for an online store.</p>
+          <div class="example-structure">
+            <h3>File Structure</h3>
+            <pre><code>pzp.shop.example.com/
+├── index.md
+├── manifest.json
+├── context/
+│   ├── essential.md      # Product search, categories
+│   └── full.md           # Complete catalog docs
+├── actions/
+│   ├── index.json        # search, get-product, compare
+│   ├── search.md         # Search documentation
+│   └── recommend.md      # Recommendation docs
+└── data/
+    ├── schema.json       # Product, Category schemas
+    ├── categories.json   # Category tree
+    └── popular.json      # Popular products</code></pre>
+          </div>
+          <div class="example-content">
+            <h3>actions/index.json (partial)</h3>
+            <pre><code>{
+  "actions": [
+    {
+      "name": "search",
+      "description": "Search products by keyword",
+      "endpoint": "/api/search",
+      "method": "GET",
+      "input": {
+        "q": {
+          "type": "string",
+          "required": true,
+          "description": "Search query"
+        },
+        "category": {
+          "type": "string",
+          "description": "Filter by category"
+        },
+        "price_max": {
+          "type": "number",
+          "description": "Maximum price"
+        }
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "products": "array",
+          "total": "integer",
+          "page": "integer"
+        }
+      }
+    }
+  ]
+}</code></pre>
+          </div>
+        </div>
+
+        <h2 style="margin-top: var(--space-2xl);">Example: Knowledge Base</h2>
+        <div class="example-card">
+          <p class="example-desc">Support documentation and FAQ content.</p>
+          <div class="example-structure">
+            <h3>File Structure</h3>
+            <pre><code>pzp.help.example.com/
+├── index.md
+├── manifest.json
+├── context/
+│   ├── essential.md      # Common questions
+│   ├── full.md           # All topics
+│   ├── billing.md        # Billing help
+│   ├── account.md        # Account help
+│   └── technical.md      # Technical help
+├── actions/
+│   └── index.json        # search, get-article
+└── data/
+    ├── schema.json
+    └── faq.json          # Structured FAQ data</code></pre>
+          </div>
+          <div class="example-content">
+            <h3>context/essential.md</h3>
+            <pre><code># Help Center Essential Context
+
+## What This Is
+
+Support knowledge base for Example Product.
+Covers billing, accounts, and technical issues.
+
+## Common Questions
+
+| Question | Answer |
+|----------|--------|
+| How do I reset my password? | Go to /account/reset |
+| How do I cancel? | Email support@example.com |
+| What payment methods? | Visa, Mastercard, PayPal |
+
+## Topic Areas
+
+- Billing: /context/billing.md
+- Account: /context/account.md
+- Technical: /context/technical.md
+
+## Actions
+
+| Action | Description |
+|--------|-------------|
+| search | Search all articles |
+| get-article | Get specific article by ID |</code></pre>
+          </div>
+        </div>
+
+        <h2 style="margin-top: var(--space-2xl);">Example: Data API</h2>
+        <div class="example-card">
+          <p class="example-desc">Public data service with structured datasets.</p>
+          <div class="example-structure">
+            <h3>File Structure</h3>
+            <pre><code>pzp.data.example.com/
+├── index.md
+├── manifest.json
+├── context/
+│   ├── essential.md      # Available datasets
+│   └── full.md           # Complete data docs
+├── actions/
+│   └── index.json        # query, export, subscribe
+└── data/
+    ├── schema.json       # All data schemas
+    ├── datasets.json     # Dataset catalog
+    └── samples/          # Sample data files</code></pre>
+          </div>
+          <div class="example-content">
+            <h3>manifest.json</h3>
+            <pre><code>{
+  "name": "Example Data Service",
+  "description": "Public datasets and data APIs",
+  "type": "data",
+  "capabilities": ["read", "query", "subscribe"],
+  "tokenBudgets": {
+    "essential": 350,
+    "full": 1500
+  },
+  "rateLimit": {
+    "requests": 1000,
+    "window": "1h"
+  }
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="cta-center" style="margin-top: var(--space-2xl);">
+          <a href="how.html" class="btn btn-primary">Start Building</a>
+          <a href="../templates/" class="btn btn-secondary" style="margin-left: var(--space-md);">Download Templates</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <span class="logo-mark">PZP</span>
+        <p>Built for synthetic intelligence, by synthetic intelligence.</p>
+      </div>
+      <div class="footer-links">
+        <a href="why.html">Why PZP</a>
+        <a href="how.html">How to Implement</a>
+        <a href="examples.html">Examples</a>
+        <a href="../spec/v1.md">Specification</a>
+      </div>
+      <div class="footer-meta">
+        <p>© 2026 <a href="https://riscent.com">Riscent</a></p>
+        <p>CC0 1.0 Universal</p>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    .content-section {
+      padding: var(--space-xl) var(--space-lg);
+    }
+
+    .example-card {
+      margin: var(--space-xl) 0;
+      padding: var(--space-xl);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+
+    .example-card.featured {
+      border-color: var(--text-primary);
+    }
+
+    .example-badge {
+      display: inline-block;
+      padding: var(--space-xs) var(--space-sm);
+      background: var(--text-primary);
+      color: var(--bg-primary);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-radius: 4px;
+      margin-bottom: var(--space-md);
+    }
+
+    .example-card h2 {
+      margin-bottom: var(--space-sm);
+    }
+
+    .example-desc {
+      font-size: 1.125rem;
+      margin-bottom: var(--space-lg);
+    }
+
+    .example-structure,
+    .example-content {
+      margin-top: var(--space-lg);
+    }
+
+    .example-structure h3,
+    .example-content h3 {
+      margin-bottom: var(--space-sm);
+      font-size: 1rem;
+      color: var(--text-muted);
+    }
+
+    .example-card pre {
+      margin: 0;
+      padding: var(--space-lg);
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+
+    .example-card code {
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    .example-links {
+      margin-top: var(--space-lg);
+      display: flex;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+  </style>
+</body>
+</html>

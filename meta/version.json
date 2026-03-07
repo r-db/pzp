@@ -1,0 +1,15 @@
+{
+  "$schema": "https://pzp.riscent.com/schemas/version.schema.json",
+  "version": "1.0.0",
+  "protocolVersion": "1.0.0",
+  "updated": "2026-03-06T00:00:00Z",
+  "status": "healthy",
+  "lastCheck": "2026-03-06T00:00:00Z",
+  "components": {
+    "spec": { "status": "healthy" },
+    "schemas": { "status": "healthy" },
+    "context": { "status": "healthy" },
+    "actions": { "status": "healthy" }
+  },
+  "deprecations": []
+}

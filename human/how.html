@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Implement | Prime Zero Protocol</title>
+  <meta name="description" content="Step-by-step guide to implementing Prime Zero Protocol for your website.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-content">
+      <a href="index.html" class="logo">
+        <span class="logo-mark">PZP</span>
+        <span class="logo-text">Prime Zero Protocol</span>
+      </a>
+      <div class="nav-links">
+        <a href="why.html">Why</a>
+        <a href="how.html">How</a>
+        <a href="examples.html">Examples</a>
+        <a href="../spec/v1.md" class="nav-cta">Specification</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" style="min-height: auto; padding-top: 150px; padding-bottom: var(--space-xl);">
+      <div class="hero-content">
+        <p class="hero-eyebrow">IMPLEMENTATION GUIDE</p>
+        <h1>Build your PZP site.</h1>
+        <p class="hero-subtitle">
+          From zero to machine-native in 5 steps.
+        </p>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="section-content" style="max-width: 900px;">
+
+        <h2>Quick Start</h2>
+        <p class="lead">Create a minimal PZP site in under 10 minutes.</p>
+
+        <div class="code-block">
+          <div class="code-header">Terminal</div>
+          <pre><code># Create directory structure
+mkdir -p pzp-site/{context,actions,data,meta}
+
+# Create required files
+touch pzp-site/index.md
+touch pzp-site/manifest.json
+touch pzp-site/context/essential.md
+touch pzp-site/robots.txt</code></pre>
+        </div>
+
+        <h2 style="margin-top: var(--space-2xl);">Step 1: Create manifest.json</h2>
+        <p>The manifest tells agents what your site is and what it offers.</p>
+
+        <div class="code-block">
+          <div class="code-header">manifest.json</div>
+          <pre><code>{
+  "$schema": "https://pzp.riscent.com/schemas/manifest.schema.json",
+  "version": "1.0.0",
+  "protocolVersion": "1.0.0",
+  "name": "Your Site Name",
+  "description": "One-line description of what this site offers",
+  "type": "service",
+  "updated": "2026-03-06T00:00:00Z",
+  "tokenBudgets": {
+    "essential": 500,
+    "full": 2000
+  },
+  "endpoints": {
+    "context": "/context/",
+    "actions": "/actions/",
+    "data": "/data/",
+    "meta": "/meta/"
+  },
+  "capabilities": ["read", "query"],
+  "rateLimit": {
+    "requests": 100,
+    "window": "1m"
+  }
+}</code></pre>
+        </div>
+
+        <h2 style="margin-top: var(--space-2xl);">Step 2: Create index.md</h2>
+        <p>The entry point for agents visiting your site.</p>
+
+        <div class="code-block">
+          <div class="code-header">index.md</div>
+          <pre><code># Your Site Name
+
+> One-line description of what this site offers.
+
+## Identity
+
+- **Domain:** pzp.yourdomain.com
+- **Type:** service
+- **Version:** 1.0.0
+- **Updated:** 2026-03-06
+
+## Purpose
+
+2-3 sentences explaining what agents can do here
+and why they would want to.
+
+## Quick Start
+
+1. Read context: [/context/essential.md](context/essential.md)
+2. See actions: [/actions/index.json](actions/index.json)
+3. Get data: [/data/](data/)
+
+## Navigation
+
+| Resource | Path | Description |
+|----------|------|-------------|
+| Essential Context | /context/essential.md | Start here |
+| Full Context | /context/full.md | Deep dive |
+| Actions | /actions/index.json | What you can do |</code></pre>
+        </div>
+
+        <h2 style="margin-top: var(--space-2xl);">Step 3: Create context/essential.md</h2>
+        <p>The minimum context an agent needs. Target ~500 tokens.</p>
+
+        <div class="code-block">
+          <div class="code-header">context/essential.md</div>
+          <pre><code># Your Site Essential Context
+
+## What This Is
+
+Single paragraph explaining your site/service.
+Keep it concise but complete.
+
+## Key Capabilities
+
+- Capability one
+- Capability two
+- Capability three
+
+## Primary Actions
+
+| Action | Endpoint | Method | Description |
+|--------|----------|--------|-------------|
+| search | /api/search | POST | Search content |
+| get | /api/item/{id} | GET | Get specific item |
+
+## Constraints
+
+- Rate limited to 100 requests/minute
+- Authentication required for write operations
+- JSON responses only</code></pre>
+        </div>
+
+        <h2 style="margin-top: var(--space-2xl);">Step 4: Create robots.txt</h2>
+        <p>Enable agent discovery of your PZP site.</p>
+
+        <div class="code-block">
+          <div class="code-header">robots.txt</div>
+          <pre><code># Prime Zero Protocol Site
+User-agent: *
+Allow: /
+
+# PZP Discovery
+X-PZP-Site: true
+X-PZP-Manifest: /manifest.json
+X-PZP-Version: 1.0.0
+
+# AI Agents Welcome
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: /sitemap.txt</code></pre>
+        </div>
+
+        <h2 style="margin-top: var(--space-2xl);">Step 5: Deploy</h2>
+        <p>Set up your subdomain and configure headers.</p>
+
+        <div class="checklist">
+          <h3>Deployment Checklist</h3>
+          <ul>
+            <li><label><input type="checkbox"> Set up pzp.yourdomain.com subdomain</label></li>
+            <li><label><input type="checkbox"> Deploy files to production</label></li>
+            <li><label><input type="checkbox"> Configure response headers (see below)</label></li>
+            <li><label><input type="checkbox"> Add DNS TXT record (optional)</label></li>
+            <li><label><input type="checkbox"> Add link tag to human site (optional)</label></li>
+          </ul>
+        </div>
+
+        <h3 style="margin-top: var(--space-xl);">Required Headers</h3>
+        <div class="code-block">
+          <div class="code-header">HTTP Headers</div>
+          <pre><code>Content-Type: text/markdown; charset=utf-8
+X-Token-Count: 450
+X-Content-Version: 1.0.0
+X-Last-Modified: 2026-03-06T00:00:00Z
+X-PZP-Version: 1.0.0
+Access-Control-Allow-Origin: *
+Cache-Control: public, max-age=3600</code></pre>
+        </div>
+
+        <h3 style="margin-top: var(--space-xl);">Optional: DNS Discovery</h3>
+        <div class="code-block">
+          <div class="code-header">DNS TXT Record</div>
+          <pre><code>_pzp.yourdomain.com TXT "v=pzp1 endpoint=pzp.yourdomain.com type=service"</code></pre>
+        </div>
+
+        <h3 style="margin-top: var(--space-xl);">Optional: HTML Link</h3>
+        <div class="code-block">
+          <div class="code-header">On your human site</div>
+          <pre><code>&lt;link rel="pzp-site" href="https://pzp.yourdomain.com/"&gt;</code></pre>
+        </div>
+
+        <h2 style="margin-top: var(--space-2xl);">Verification</h2>
+        <p>Test your PZP site after deployment.</p>
+
+        <div class="code-block">
+          <div class="code-header">Terminal</div>
+          <pre><code># Check manifest
+curl -s https://pzp.yourdomain.com/manifest.json | jq .
+
+# Check headers
+curl -I https://pzp.yourdomain.com/context/essential.md
+
+# Check robots.txt
+curl https://pzp.yourdomain.com/robots.txt
+
+# Estimate token count
+curl -s https://pzp.yourdomain.com/context/essential.md | wc -w
+# Multiply by ~1.3 for approximate tokens</code></pre>
+        </div>
+
+        <h2 style="margin-top: var(--space-2xl);">Adding Actions</h2>
+        <p>If your site has APIs, define them in actions/index.json.</p>
+
+        <div class="code-block">
+          <div class="code-header">actions/index.json</div>
+          <pre><code>{
+  "$schema": "https://pzp.riscent.com/schemas/actions.schema.json",
+  "version": "1.0.0",
+  "description": "Available actions",
+  "baseUrl": "https://api.yourdomain.com",
+  "actions": [
+    {
+      "name": "search",
+      "description": "Search the content",
+      "endpoint": "/api/search",
+      "method": "POST",
+      "input": {
+        "query": {
+          "type": "string",
+          "required": true,
+          "description": "Search query"
+        }
+      },
+      "output": {
+        "type": "array",
+        "items": {
+          "title": "string",
+          "content": "string"
+        }
+      },
+      "errors": {
+        "400": "Invalid query",
+        "429": "Rate limit exceeded"
+      }
+    }
+  ]
+}</code></pre>
+        </div>
+
+        <h2 style="margin-top: var(--space-2xl);">Resources</h2>
+
+        <div class="resources-grid">
+          <a href="../spec/v1.md" class="resource-card">
+            <h3>Specification</h3>
+            <p>Complete protocol documentation</p>
+          </a>
+          <a href="../schemas/" class="resource-card">
+            <h3>JSON Schemas</h3>
+            <p>Validate your implementation</p>
+          </a>
+          <a href="../templates/" class="resource-card">
+            <h3>Templates</h3>
+            <p>Ready-to-use file templates</p>
+          </a>
+          <a href="examples.html" class="resource-card">
+            <h3>Examples</h3>
+            <p>Real-world implementations</p>
+          </a>
+        </div>
+
+        <div class="cta-center" style="margin-top: var(--space-2xl);">
+          <a href="examples.html" class="btn btn-primary">View Examples</a>
+          <a href="../spec/v1.md" class="btn btn-secondary" style="margin-left: var(--space-md);">Read Specification</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <span class="logo-mark">PZP</span>
+        <p>Built for synthetic intelligence, by synthetic intelligence.</p>
+      </div>
+      <div class="footer-links">
+        <a href="why.html">Why PZP</a>
+        <a href="how.html">How to Implement</a>
+        <a href="examples.html">Examples</a>
+        <a href="../spec/v1.md">Specification</a>
+      </div>
+      <div class="footer-meta">
+        <p>© 2026 <a href="https://riscent.com">Riscent</a></p>
+        <p>CC0 1.0 Universal</p>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    .content-section {
+      padding: var(--space-xl) var(--space-lg);
+    }
+
+    .code-block {
+      margin: var(--space-lg) 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .code-header {
+      padding: var(--space-sm) var(--space-md);
+      background: var(--bg-tertiary);
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .code-block pre {
+      margin: 0;
+      padding: var(--space-lg);
+      overflow-x: auto;
+      background: var(--bg-secondary);
+    }
+
+    .code-block code {
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--text-primary);
+    }
+
+    .checklist {
+      padding: var(--space-lg);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin: var(--space-lg) 0;
+    }
+
+    .checklist h3 {
+      margin-bottom: var(--space-md);
+      color: var(--text-primary);
+    }
+
+    .checklist ul {
+      list-style: none;
+    }
+
+    .checklist li {
+      padding: var(--space-sm) 0;
+    }
+
+    .checklist label {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+
+    .checklist input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+    }
+
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-md);
+      margin: var(--space-xl) 0;
+    }
+
+    .resource-card {
+      padding: var(--space-lg);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      transition: border-color 0.2s;
+    }
+
+    .resource-card:hover {
+      border-color: var(--text-primary);
+      opacity: 1;
+    }
+
+    .resource-card h3 {
+      margin-bottom: var(--space-xs);
+      color: var(--text-primary);
+    }
+
+    .resource-card p {
+      font-size: 0.875rem;
+      margin: 0;
+    }
+  </style>
+</body>
+</html>

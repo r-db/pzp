@@ -1,0 +1,93 @@
+{
+  "$schema": "https://pzp.riscent.com/schemas/actions.schema.json",
+  "version": "1.0.0",
+  "description": "Actions available on the PZP specification site",
+  "baseUrl": "https://pzp.riscent.com",
+  "actions": [
+    {
+      "name": "get-schema",
+      "description": "Retrieve a JSON Schema definition by name",
+      "endpoint": "/schemas/{name}.schema.json",
+      "method": "GET",
+      "input": {
+        "name": {
+          "type": "string",
+          "required": true,
+          "enum": ["manifest", "actions", "data", "version"],
+          "description": "Schema name (without .schema.json extension)"
+        }
+      },
+      "output": {
+        "type": "object",
+        "description": "JSON Schema document"
+      },
+      "errors": {
+        "404": "Schema not found"
+      },
+      "examples": [
+        {
+          "name": "Get manifest schema",
+          "input": { "name": "manifest" },
+          "output": { "$schema": "...", "title": "PZP Site Manifest", "type": "object" }
+        }
+      ],
+      "tags": ["schema", "reference"]
+    },
+    {
+      "name": "get-template",
+      "description": "Retrieve a file template",
+      "endpoint": "/templates/{name}.template.{ext}",
+      "method": "GET",
+      "input": {
+        "name": {
+          "type": "string",
+          "required": true,
+          "enum": ["index", "manifest", "essential", "actions", "version", "robots"],
+          "description": "Template name"
+        },
+        "ext": {
+          "type": "string",
+          "required": true,
+          "enum": ["md", "json", "txt"],
+          "description": "File extension"
+        }
+      },
+      "output": {
+        "type": "string",
+        "description": "Template content with {{PLACEHOLDERS}}"
+      },
+      "errors": {
+        "404": "Template not found"
+      },
+      "tags": ["template", "reference"]
+    },
+    {
+      "name": "list-files",
+      "description": "List all files in a directory",
+      "endpoint": "/api/files",
+      "method": "GET",
+      "input": {
+        "path": {
+          "type": "string",
+          "default": "/",
+          "description": "Directory path"
+        }
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "path": "string",
+          "files": {
+            "type": "array",
+            "items": {
+              "name": "string",
+              "type": "string",
+              "tokenCount": "integer"
+            }
+          }
+        }
+      },
+      "tags": ["navigation"]
+    }
+  ]
+}

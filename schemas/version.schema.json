@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pzp.riscent.com/schemas/version.schema.json",
+  "title": "PZP Site Version",
+  "description": "Version and health information for a PZP site",
+  "type": "object",
+  "required": ["version", "updated", "status"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "const": "https://pzp.riscent.com/schemas/version.schema.json"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Current site version"
+    },
+    "protocolVersion": {
+      "type": "string",
+      "default": "1.0.0",
+      "description": "PZP version"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last update timestamp"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["healthy", "degraded", "maintenance", "error"],
+      "description": "Current operational status"
+    },
+    "uptime": {
+      "type": "string",
+      "description": "Uptime percentage or duration"
+    },
+    "lastCheck": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last health check timestamp"
+    },
+    "components": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": ["healthy", "degraded", "error"]
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Component-level health status"
+    },
+    "deprecations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "feature": { "type": "string" },
+          "reason": { "type": "string" },
+          "removeBy": { "type": "string" },
+          "replacement": { "type": "string" }
+        }
+      },
+      "description": "Upcoming deprecations"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://pzp.riscent.com/schemas/manifest.schema.json",
+  "version": "1.0.0",
+  "protocolVersion": "1.0.0",
+  "name": "Prime Zero Protocol",
+  "description": "Official PZP specification, schemas, templates, and documentation",
+  "type": "documentation",
+  "updated": "2026-03-06T00:00:00Z",
+  "tokenBudgets": {
+    "essential": 400,
+    "full": 2500
+  },
+  "endpoints": {
+    "context": "/context/",
+    "actions": "/actions/",
+    "data": "/data/",
+    "meta": "/meta/"
+  },
+  "capabilities": ["read", "query"],
+  "authentication": {
+    "required": false,
+    "methods": ["none"]
+  },
+  "rateLimit": {
+    "requests": 100,
+    "window": "1m"
+  },
+  "contact": {
+    "url": "https://riscent.com"
+  },
+  "tags": ["pzp", "protocol", "specification", "machine-native", "synthetic-intelligence"]
+}

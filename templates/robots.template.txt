@@ -1,0 +1,32 @@
+# Prime Zero Protocol Site: {{SITE_NAME}}
+# Machine-native web. All agents welcome.
+
+User-agent: *
+Allow: /
+
+# PZP Site Discovery
+X-PZP-Site: true
+X-PZP-Manifest: /manifest.json
+X-PZP-Version: 1.0.0
+
+# AI Agents
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Sitemap
+Sitemap: /sitemap.txt
