@@ -21,3 +21,16 @@
 /human/why.html
 /human/how.html
 /human/examples.html
+/human/statistics.html
+/docs/index.md
+/docs/01-business-case/index.md
+/docs/01-business-case/market-landscape.md
+/docs/01-business-case/problem-statement.md
+/docs/02-specification/index.md
+/docs/02-specification/terminology.md
+/docs/02-specification/architecture.md
+/docs/02-specification/discovery.md
+/docs/03-use-cases/ecommerce/index.md
+/docs/03-use-cases/ecommerce/example-complete.md
+/docs/04-implementation/quickstart/index.md
+/docs/04-implementation/quickstart/5-minute.md
