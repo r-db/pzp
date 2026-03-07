@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Numbers | Prime Zero Protocol</title>
+  <meta name="description" content="Hard data on why the machine-native web is inevitable. Statistics on AI adoption, search transformation, and the agent economy.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="pzp-site" href="https://pzp.riscent.com/">
+  <style>
+    .stats-hero {
+      padding: 6rem 0 4rem;
+      text-align: center;
+    }
+
+    .stats-hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    .stats-hero .lead {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .stat-section {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stat-section:last-child {
+      border-bottom: none;
+    }
+
+    .stat-section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+    }
+
+    .stat-section .section-desc {
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-number.negative {
+      color: #ef4444;
+    }
+
+    .stat-number.positive {
+      color: #22c55e;
+    }
+
+    .stat-label {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-desc {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+
+    .stat-source {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 2rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2rem;
+      top: 0.5rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+    }
+
+    .timeline-year {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-event {
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-detail {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.5rem;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .comparison-table th {
+      font-weight: 600;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .comparison-table td {
+      font-size: 1rem;
+    }
+
+    .comparison-table .highlight {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .cta-section {
+      text-align: center;
+      padding: 6rem 0;
+      background: var(--surface);
+      margin-top: 4rem;
+    }
+
+    .cta-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-content">
+      <a href="/" class="logo">
+        <span class="logo-mark">PZP</span>
+        <span class="logo-text">Prime Zero Protocol</span>
+      </a>
+      <div class="nav-links">
+        <a href="why.html">Why</a>
+        <a href="how.html">How</a>
+        <a href="statistics.html" class="active">Statistics</a>
+        <a href="examples.html">Examples</a>
+        <a href="../spec/v1.md" class="nav-cta">Specification</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="stats-hero">
+      <div class="container">
+        <h1>The Numbers</h1>
+        <p class="lead">
+          Hard data on why the machine-native web is inevitable.
+          These aren't predictions. This is what's happening now.
+        </p>
+      </div>
+    </section>
+
+    <div class="container">
+      <!-- Search Transformation -->
+      <section class="stat-section">
+        <h2>Search Is Transforming</h2>
+        <p class="section-desc">Traditional search is declining as AI takes over information retrieval.</p>
+
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-number negative">-25%</div>
+            <div class="stat-label">Search Volume Drop</div>
+            <div class="stat-desc">Traditional search engine queries will decline 25% by 2026 as AI chatbots gain share.</div>
+            <div class="stat-source">Source: Gartner (2024)</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number">69%</div>
+            <div class="stat-label">Zero-Click Searches</div>
+            <div class="stat-desc">Nearly 7 in 10 Google searches now end without a website click.</div>
+            <div class="stat-source">Source: Similarweb (2025)</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number negative">-61%</div>
+            <div class="stat-label">CTR With AI Overviews</div>
+            <div class="stat-desc">Click-through rates plummet when AI Overviews appear in search results.</div>
+            <div class="stat-source">Source: DataSlayer (2025)</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number negative">-33%</div>
+            <div class="stat-label">Publisher Traffic Loss</div>
+            <div class="stat-desc">Global publishers lost one-third of their Google traffic in a single year.</div>
+            <div class="stat-source">Source: Press Gazette (2025)</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AI Usage -->
+      <section class="stat-section">
+        <h2>AI Is the New Interface</h2>
+        <p class="section-desc">Users are shifting from search engines to AI assistants.</p>
+
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-number">800M</div>
+            <div class="stat-label">Weekly ChatGPT Users</div>
+            <div class="stat-desc">More people use ChatGPT weekly than use Twitter/X. Double the users from 10 months prior.</div>
+            <div class="stat-source">Source: OpenAI (2025)</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number">34%</div>
+            <div class="stat-label">Daily AI Users</div>
+            <div class="stat-desc">Over a third of those who've tried AI search use it daily or near-daily.</div>
+            <div class="stat-source">Source: Industry surveys (2025)</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number">97M+</div>
+            <div class="stat-label">MCP SDK Downloads</div>
+            <div class="stat-desc">Monthly downloads of Model Context Protocol SDK. Backed by Anthropic, OpenAI, Google, Microsoft.</div>
+            <div class="stat-source">Source: Anthropic (2026)</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number positive">4-5x</div>
+            <div class="stat-label">AI Traffic Conversion</div>
+            <div class="stat-desc">Traffic from AI platforms converts at 4-5x the rate of traditional search.</div>
+            <div class="stat-source">Source: RankScience (2025)</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Agent Economy -->
+      <section class="stat-section">
+        <h2>The Agent Economy Is Here</h2>
+        <p class="section-desc">AI agents are becoming the primary way businesses operate.</p>
+
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-number">$93B</div>
+            <div class="stat-label">Agentic AI Market (2032)</div>
+            <div class="stat-desc">The agentic AI market grows from $7B in 2025 to $93B by 2032. 44% CAGR.</div>
+            <div class="stat-source">Source: MarketsAndMarkets (2025)</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number">40%</div>
+            <div class="stat-label">Enterprise Apps with Agents</div>
+            <div class="stat-desc">40% of enterprise applications will have AI agents by end of 2026. Up from 5% in 2025.</div>
+            <div class="stat-source">Source: Gartner (2025)</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number">50%</div>
+            <div class="stat-label">Enterprises with Autonomous Agents</div>
+            <div class="stat-desc">Half of all enterprises using GenAI will deploy autonomous agents by 2027.</div>
+            <div class="stat-source">Source: Gartner (2025)</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number">88%</div>
+            <div class="stat-label">Increasing AI Budgets</div>
+            <div class="stat-desc">Nearly 9 in 10 executives plan to increase AI-related budgets in the next 12 months.</div>
+            <div class="stat-source">Source: Industry surveys (2025)</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Historical Parallel -->
+      <section class="stat-section">
+        <h2>The Historical Parallel</h2>
+        <p class="section-desc">Businesses that didn't adopt websites failed. The same pattern is repeating.</p>
+
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-number">2x</div>
+            <div class="stat-label">Revenue Multiplier</div>
+            <div class="stat-desc">Businesses with websites generate 2x more revenue than those with only social media.</div>
+            <div class="stat-source">Source: Network Solutions (2024)</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number">81%</div>
+            <div class="stat-label">Research Online First</div>
+            <div class="stat-desc">Over 8 in 10 consumers research online before purchasing. Missing means invisible.</div>
+            <div class="stat-source">Source: Consumer surveys (2024)</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number">30-50%</div>
+            <div class="stat-label">Lost Customers</div>
+            <div class="stat-desc">Businesses without web presence lose 30-50% of potential customers to competitors.</div>
+            <div class="stat-source">Source: Industry analysis (2024)</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number">65%</div>
+            <div class="stat-label">Expect a Website</div>
+            <div class="stat-desc">Nearly two-thirds of consumers expect businesses to have a website even with social media.</div>
+            <div class="stat-source">Source: Consumer surveys (2024)</div>
+          </div>
+        </div>
+
+        <h3 style="margin-top: 3rem; margin-bottom: 1.5rem;">The Timeline</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-year">2024</div>
+            <div class="timeline-event">AI Overviews launch</div>
+            <div class="timeline-detail">Google introduces AI-generated answers in search. Zero-click searches surge.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2025</div>
+            <div class="timeline-event">Publisher traffic collapses</div>
+            <div class="timeline-detail">Major publishers lose 33-55% of search traffic. Agent deployment accelerates.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2026</div>
+            <div class="timeline-event">Search volume drops 25%</div>
+            <div class="timeline-detail">Gartner prediction realized. 40% of enterprise apps have AI agents.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2027</div>
+            <div class="timeline-event">Autonomous agents go mainstream</div>
+            <div class="timeline-detail">50% of enterprises deploy autonomous agents. AI traffic achieves economic parity.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2028+</div>
+            <div class="timeline-event">Machine-native becomes expected</div>
+            <div class="timeline-detail">PZP adoption becomes standard. Non-adopters are invisible to the agent economy.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Comparison -->
+      <section class="stat-section">
+        <h2>With vs. Without PZP</h2>
+        <p class="section-desc">The difference machine-native makes.</p>
+
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Without PZP</th>
+              <th>With PZP</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Tokens per page load</td>
+              <td>10,000-50,000</td>
+              <td class="highlight">500-2,000</td>
+            </tr>
+            <tr>
+              <td>Content extraction accuracy</td>
+              <td>60-80%</td>
+              <td class="highlight">100%</td>
+            </tr>
+            <tr>
+              <td>JavaScript required</td>
+              <td>Often yes</td>
+              <td class="highlight">Never</td>
+            </tr>
+            <tr>
+              <td>Structure inference needed</td>
+              <td>Always</td>
+              <td class="highlight">Never</td>
+            </tr>
+            <tr>
+              <td>Agent executable actions</td>
+              <td>None</td>
+              <td class="highlight">Defined in JSON</td>
+            </tr>
+            <tr>
+              <td>Discovery mechanism</td>
+              <td>Ad-hoc crawling</td>
+              <td class="highlight">Standardized</td>
+            </tr>
+            <tr>
+              <td>API cost efficiency</td>
+              <td>Baseline</td>
+              <td class="highlight">80% reduction</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+
+    <section class="cta-section">
+      <div class="container">
+        <h2>The Data Is Clear</h2>
+        <p>
+          Search is declining. AI is rising. Agents need structure.
+          The businesses that adapt now will own the agent economy.
+        </p>
+        <div class="hero-cta">
+          <a href="how.html" class="btn btn-primary">Implement PZP</a>
+          <a href="../docs/01-business-case/" class="btn btn-secondary">Read Full Analysis</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <span class="logo-mark">PZP</span>
+          <p>The machine-native web.</p>
+          <p class="footer-copy">&copy; 2026 Riscent</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Protocol</h4>
+            <a href="../spec/v1.md">Specification</a>
+            <a href="../schemas/">Schemas</a>
+            <a href="../templates/">Templates</a>
+          </div>
+          <div class="footer-col">
+            <h4>Learn</h4>
+            <a href="why.html">Why PZP</a>
+            <a href="how.html">How to Implement</a>
+            <a href="examples.html">Examples</a>
+            <a href="statistics.html">Statistics</a>
+          </div>
+          <div class="footer-col">
+            <h4>Resources</h4>
+            <a href="../docs/">Documentation</a>
+            <a href="../context/essential.md">Quick Context</a>
+            <a href="../actions/index.json">Actions</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
