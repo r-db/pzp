@@ -42,11 +42,28 @@
 
 ### Available Now
 
-- Business Case: Market Landscape, Problem Statement
-- Specification: Terminology, Architecture, Discovery
-- Use Cases: E-commerce (complete example)
-- Implementation: Quick Start (5-minute setup)
-- Human Site: Statistics page with data visualization
+**Business Case (3 documents)**
+- Market Landscape - Complete statistics on AI adoption
+- Problem Statement - The parsing crisis explained
+
+**Specification (8 documents)**
+- Terminology - RFC 2119 keywords and PZP terms
+- Architecture - Three-layer protocol model
+- Discovery - robots.txt, DNS, HTML mechanisms
+- Manifest - Complete manifest schema
+- Context - Hierarchical context system
+- Actions - Action definitions and patterns
+- Security - Authentication, authorization, rate limiting
+
+**Use Cases (4 documents)**
+- E-commerce: Overview + Complete example
+- Content/Blog: Overview + Complete example
+
+**Implementation (2 documents)**
+- Quick Start: 5-minute setup guide
+
+**Human Site**
+- Statistics page with data visualization
 
 ### In Progress
 
